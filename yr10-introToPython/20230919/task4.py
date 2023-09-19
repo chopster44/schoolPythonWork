@@ -11,7 +11,7 @@ if age >= 21:
             print("You can rent a flat")
         else:
             print("No flat for you")
-elif age >= 17 and age < 21:
+elif 16 < age < 21:
     if 0 < salary < 1000:
         print("Not old enough, if you have a guarantor you can rent.")
         guarantorBool: str = str(
