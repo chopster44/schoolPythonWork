@@ -28,7 +28,8 @@ def draw_player(pos: list[int], icon: str):
 
 
 def print_game(game: list[list[str]]):
-    print(clear)
+    os.system("clear")
+    print("\n" * (screen_height - len(game)))
     line: str = "\n"
     for i in game:
         line = ""
