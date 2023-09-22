@@ -1,4 +1,8 @@
-clear = "\n" * 100
+import os
+from random import randint
+
+screen_height = os.get_terminal_size()[0]
+screen_width = os.get_terminal_size()[1]
 
 player_pos: list[int] = [1, 1]
 player: str = "@"
