@@ -27,8 +27,10 @@ def room_generator(size: int) -> list[list[str]]:
     return generated_room
 
 
-def draw_player(pos: list[int], icon: str):
-    pass
+def draw_player(pos: list[int], icon: str, game: list[list[str]]):
+    if game[pos[0]][pos[1]] != "-" or "|":
+        game[pos[0]][pos[1]] = icon
+    return game
 
 
 def print_game(game: list[list[str]]):
@@ -45,7 +47,7 @@ def print_game(game: list[list[str]]):
     print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+(spc)\n")
 
 
-room: list[list[str]] = room_generator(4)
+room: list[list[str]] = draw_player(player_pos, player, room_generator(4))
 
 print_game(room)
 
