@@ -1,16 +1,15 @@
 clear = "\n" * 100
 
-
 player_pos: list[int] = [1, 1]
-player:str = "#"
+player: str = "#"
 
 
 def room_generator(size: int) -> list[list[str]]:
     size = size * 2 + 1
     generated_map: list[list[str]] = [[]]
     for i in range(0, size):
-        if i < (size-1):
-           generated_map.append([])
+        if i < (size - 1):
+            generated_map.append([])
         for j in range(0, size):
             generated_map[i].append(" ")
     for i in range(0, size):
@@ -23,8 +22,10 @@ def room_generator(size: int) -> list[list[str]]:
                 generated_map[i][j] = " "
     return generated_map
 
-def draw_player(pos:list[int], icon:str):
+
+def draw_player(pos: list[int], icon: str):
     pass
+
 
 def print_game(game: list[list[str]]):
     print(clear)
@@ -34,6 +35,7 @@ def print_game(game: list[list[str]]):
         for j in game[game.index(i)]:
             line += j
         print(line)
+
 
 game_map: list[list[str]] = room_generator(4)
 
