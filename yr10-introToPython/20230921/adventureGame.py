@@ -1,7 +1,7 @@
 clear = "\n" * 100
 
 player_pos: list[int] = [1, 1]
-player: str = "#"
+player: str = "@"
 
 
 def room_generator(size: int) -> list[list[str]]:
