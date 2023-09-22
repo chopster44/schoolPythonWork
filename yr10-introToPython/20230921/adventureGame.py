@@ -24,7 +24,7 @@ def room_generator(size: int) -> list[list[str]]:
     return generated_map
 
 def draw_player(pos:list[int], icon:str):
-    #place
+    pass
 
 def print_game(game: list[list[str]]):
     print(clear)
