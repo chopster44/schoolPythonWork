@@ -41,7 +41,12 @@ def print_game(game: list[list[str]]):
             line += j
         print(line)
 
+    print("\n\nControls:")
+    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+(spc)\n")
 
-game_map: list[list[str]] = room_generator(4)
 
-print_game(game_map)
+room: list[list[str]] = room_generator(4)
+
+print_game(room)
+
+input()
