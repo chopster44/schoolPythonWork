@@ -3,10 +3,10 @@ import copy
 from random import randint
 
 
-# screen_height = os.get_terminal_size()[0]
-# screen_width = os.get_terminal_size()[1]
-screen_height = 80
-screen_width = 80
+screen_height = os.get_terminal_size()[0]
+screen_width = os.get_terminal_size()[1]
+# screen_height = 24
+# screen_width = 80
 
 room_type = list[list[str]]
 
