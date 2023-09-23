@@ -20,6 +20,16 @@ coin: str = "*"
 door: str = "+"
 wall: list[str] = ["-", "|"]
 
+controls: dict[str, str] = {
+    "up": "w",
+    "down": "s",
+    "left": "a",
+    "right": "d",
+    "attack": "a",
+    "interact": "i",
+    "quit": "q"
+}
+
 
 def room_generator(size: int) -> list[list[str]]:
     size = size * 2 + 1
@@ -71,15 +81,15 @@ def move(action: str, room: room_type, current_pos: list[int]):
         else:
             return new_pos
     else:
-        if action[0] == "w" and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
+        if action[0] == controls["up"] and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
             new_pos = [(current_pos[0]), (current_pos[1]-1)]
-        elif action[0] == "s" and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
+        elif action[0] == controls["down"] and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
             new_pos = [(current_pos[0]), (current_pos[1]+1)]
-        elif action[0] == "a" and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
+        elif action[0] == controls["left"] and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
             new_pos = [(current_pos[0] - 1), (current_pos[1])]
-        elif action[0] == "d" and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
+        elif action[0] == controls["right"] and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
             new_pos = [(current_pos[0] + 1), (current_pos[1])]
-        elif action[0] == "q":
+        elif action[0] == controls["quit"]:
             os.system("clear")
             exit()
     return new_pos
@@ -90,7 +100,7 @@ def game_loop(room: room_type, pos: list[int], player_icon: str):
     print_game(level, pos)
     action: str = input()
     new_pos = move(action, room, pos)
-    game_loop(room,  new_pos, player_icon)
+    game_loop(room, new_pos, player_icon)
 
 
 def start_game():
