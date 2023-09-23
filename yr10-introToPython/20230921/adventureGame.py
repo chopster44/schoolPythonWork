@@ -17,6 +17,8 @@ current_room: list[list[str]]
 player: str = "@"
 enemy: str = "^"
 coin: str = "*"
+door: str = "+"
+wall: list[str] = ["-", "|"]
 
 
 def room_generator(size: int) -> list[list[str]]:
@@ -30,9 +32,9 @@ def room_generator(size: int) -> list[list[str]]:
     for i in range(0, size):
         for j in range(0, size):
             if i == 0 or i == (size - 1):
-                generated_room[i][j] = "-"
+                generated_room[i][j] = wall[0]
             elif j == 0 or j == (size - 1):
-                generated_room[i][j] = "|"
+                generated_room[i][j] = wall[1]
             else:
                 generated_room[i][j] = " "
     return generated_room
@@ -40,7 +42,7 @@ def room_generator(size: int) -> list[list[str]]:
 
 def draw_player(pos: list[int], icon: str, game: list[list[str]]):
     out_game: list[list[str]] = copy.deepcopy(game)
-    if out_game[pos[1]][pos[0]] != "-" or "|":
+    if not (out_game[pos[1]][pos[0]] in wall):
         out_game[pos[1]][pos[0]] = icon
     return out_game
 
