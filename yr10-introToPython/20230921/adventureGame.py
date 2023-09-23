@@ -74,9 +74,9 @@ def print_game(game: list[list[str]], pos: list[int]):
 def move(action: str, room: room_type, current_pos: list[int]):
     new_pos: list[int] = copy.deepcopy(current_pos)
     if len(action) > 1:
-        if action[1] == "a":
+        if action[1] == controls["attack"]:
             pass
-        elif action[1] == "i":
+        elif action[1] == controls["interact"]:
             pass
         else:
             return new_pos
