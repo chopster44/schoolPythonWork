@@ -56,22 +56,30 @@ def print_game(game: list[list[str]], pos: list[int]):
         print(line)
 
     print(f"{pos}\nControls:")
-    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+(spc)    Quit: q\n")
+    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+a     Interact: (dir)+i    Quit: q\n")
 
 
 def move(action: str, room: room_type, current_pos: list[int]):
     new_pos: list[int] = copy.deepcopy(current_pos)
-    if action[0] == "w" and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
-        new_pos = [(current_pos[0]), (current_pos[1]-1)]
-    elif action[0] == "s" and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
-        new_pos = [(current_pos[0]), (current_pos[1]+1)]
-    elif action[0] == "a" and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
-        new_pos = [(current_pos[0] - 1), (current_pos[1])]
-    elif action[0] == "d" and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
-        new_pos = [(current_pos[0] + 1), (current_pos[1])]
-    if action[0] == "q":
-        os.system("clear")
-        exit()
+    if len(action) > 1:
+        if action[1] == "a":
+            pass
+        elif action[1] == "i":
+            pass
+        else:
+            return new_pos
+    else:
+        if action[0] == "w" and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
+            new_pos = [(current_pos[0]), (current_pos[1]-1)]
+        elif action[0] == "s" and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
+            new_pos = [(current_pos[0]), (current_pos[1]+1)]
+        elif action[0] == "a" and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
+            new_pos = [(current_pos[0] - 1), (current_pos[1])]
+        elif action[0] == "d" and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
+            new_pos = [(current_pos[0] + 1), (current_pos[1])]
+        elif action[0] == "q":
+            os.system("clear")
+            exit()
     return new_pos
 
 
