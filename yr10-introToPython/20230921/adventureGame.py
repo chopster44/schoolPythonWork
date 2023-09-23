@@ -53,7 +53,7 @@ def print_game(game: list[list[str]], pos: list[int]):
         print(line)
 
     print(f"{pos}\nControls:")
-    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+(spc)\n")
+    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+(spc)    Quit: q\n")
 
 
 def move(action: str, room: room_type, current_pos: list[int]):
@@ -66,6 +66,9 @@ def move(action: str, room: room_type, current_pos: list[int]):
         new_pos = [(current_pos[0] - 1), (current_pos[1])]
     elif action[0] == "d" and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
         new_pos = [(current_pos[0] + 1), (current_pos[1])]
+    if action[0] == "q":
+        os.system("clear")
+        exit()
     return new_pos
 
 
