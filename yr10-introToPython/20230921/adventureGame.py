@@ -11,9 +11,12 @@ screen_width = os.get_terminal_size()[1]
 room_type = list[list[str]]
 
 player_pos: list[int] = [1, 1]
-player: str = "@"
 
 current_room: list[list[str]]
+
+player: str = "@"
+enemy: str = "^"
+coin: str = "*"
 
 
 def room_generator(size: int) -> list[list[str]]:
