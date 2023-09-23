@@ -3,8 +3,10 @@ import copy
 from random import randint
 
 
-screen_height = os.get_terminal_size()[0]
-screen_width = os.get_terminal_size()[1]
+# screen_height = os.get_terminal_size()[0]
+# screen_width = os.get_terminal_size()[1]
+screen_height = 80
+screen_width = 80
 
 room_type = list[list[str]]
 
@@ -55,15 +57,14 @@ def print_game(game: list[list[str]], pos: list[int]):
 
 
 def move(action: str, room: room_type, current_pos: list[int]):
-    action_list: list[str] = action.lower().split()
     new_pos: list[int] = copy.deepcopy(current_pos)
-    if action_list[0] == "w" and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
+    if action[0] == "w" and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
         new_pos = [(current_pos[0]), (current_pos[1]-1)]
-    elif action_list[0] == "s" and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
+    elif action[0] == "s" and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
         new_pos = [(current_pos[0]), (current_pos[1]+1)]
-    elif action_list[0] == "a" and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
+    elif action[0] == "a" and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
         new_pos = [(current_pos[0] - 1), (current_pos[1])]
-    elif action_list[0] == "d" and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
+    elif action[0] == "d" and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
         new_pos = [(current_pos[0] + 1), (current_pos[1])]
     return new_pos
 
