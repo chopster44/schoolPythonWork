@@ -82,22 +82,22 @@ def move(action: str, room: room_type, current_pos: list[int], coins: int) -> tu
         else:
             return new_pos, new_coins, new_room
     else:
-        if action[0] == controls["up"] and (room[(current_pos[1] - 1)][(current_pos[0])] != "-"):
+        if action[0] == controls["up"] and (not room[(current_pos[1] - 1)][(current_pos[0])] in wall):
             new_pos = [(current_pos[0]), (current_pos[1] - 1)]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
-        elif action[0] == controls["down"] and (room[(current_pos[1] + 1)][(current_pos[0])] != "-"):
+        elif action[0] == controls["down"] and (not room[(current_pos[1] + 1)][(current_pos[0])] in wall):
             new_pos = [(current_pos[0]), (current_pos[1] + 1)]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
-        elif action[0] == controls["left"] and (room[(current_pos[1])][(current_pos[0] - 1)] != "|"):
+        elif action[0] == controls["left"] and (not room[(current_pos[1])][(current_pos[0] - 1)] in wall):
             new_pos = [(current_pos[0] - 1), (current_pos[1])]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
-        elif action[0] == controls["right"] and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
+        elif action[0] == controls["right"] and (not room[(current_pos[1])][(current_pos[0] + 1)] in wall):
             new_pos = [(current_pos[0] + 1), (current_pos[1])]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
