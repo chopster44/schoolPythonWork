@@ -2,7 +2,6 @@ import os
 import copy
 from random import randint
 
-
 screen_height = os.get_terminal_size()[0]
 screen_width = os.get_terminal_size()[1]
 # screen_height = 24
@@ -26,7 +25,6 @@ controls: dict[str, str] = {
     "left": "a",
     "right": "d",
     "attack": "a",
-    "interact": "i",
     "quit": "q"
 }
 
@@ -47,6 +45,9 @@ def room_generator(size: int) -> list[list[str]]:
                 generated_room[i][j] = wall[1]
             else:
                 generated_room[i][j] = " "
+    coins: int = randint(1, 5)
+    for i in range(0, coins):
+        generated_room[randint(1, (size - 2))][randint(1, (size - 2))] = copy.copy(coin)
     return generated_room
 
 
@@ -68,7 +69,7 @@ def print_game(game: list[list[str]], pos: list[int]):
         print(line)
 
     print(f"{pos}\nControls:")
-    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+a     Interact: (dir)+i    Quit: q\n")
+    print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+a    Quit: q\n")
 
 
 def move(action: str, room: room_type, current_pos: list[int]):
@@ -76,16 +77,14 @@ def move(action: str, room: room_type, current_pos: list[int]):
     if len(action) > 1:
         if action[1] == controls["attack"]:
             pass
-        elif action[1] == controls["interact"]:
-            pass
         else:
             return new_pos
     else:
-        if action[0] == controls["up"] and (room[(current_pos[1]-1)][(current_pos[0])] != "-"):
-            new_pos = [(current_pos[0]), (current_pos[1]-1)]
-        elif action[0] == controls["down"] and (room[(current_pos[1]+1)][(current_pos[0])] != "-"):
-            new_pos = [(current_pos[0]), (current_pos[1]+1)]
-        elif action[0] == controls["left"] and (room[(current_pos[1])][(current_pos[0]-1)] != "|"):
+        if action[0] == controls["up"] and (room[(current_pos[1] - 1)][(current_pos[0])] != "-"):
+            new_pos = [(current_pos[0]), (current_pos[1] - 1)]
+        elif action[0] == controls["down"] and (room[(current_pos[1] + 1)][(current_pos[0])] != "-"):
+            new_pos = [(current_pos[0]), (current_pos[1] + 1)]
+        elif action[0] == controls["left"] and (room[(current_pos[1])][(current_pos[0] - 1)] != "|"):
             new_pos = [(current_pos[0] - 1), (current_pos[1])]
         elif action[0] == controls["right"] and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
             new_pos = [(current_pos[0] + 1), (current_pos[1])]
