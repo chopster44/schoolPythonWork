@@ -29,7 +29,7 @@ controls: dict[str, str] = {
 }
 
 
-def room_generator(size: int) -> list[list[str]]:
+def room_generator(size: int) -> room_type:
     size = size * 2 + 1
     generated_room: list[list[str]] = [[]]
     for i in range(0, size):
@@ -51,14 +51,14 @@ def room_generator(size: int) -> list[list[str]]:
     return generated_room
 
 
-def draw_player(pos: list[int], icon: str, game: list[list[str]]):
+def draw_player(pos: list[int], icon: str, game: list[list[str]]) -> room_type:
     out_game: list[list[str]] = copy.deepcopy(game)
     if not (out_game[pos[1]][pos[0]] in wall):
         out_game[pos[1]][pos[0]] = icon
     return out_game
 
 
-def print_game(game: list[list[str]], pos: list[int]):
+def print_game(game: list[list[str]], pos: list[int], coins: int):
     os.system("clear")
     print("\n" * (screen_height - len(game)))
     line: str = "\n"
@@ -68,44 +68,58 @@ def print_game(game: list[list[str]], pos: list[int]):
             line += j
         print(line)
 
-    print(f"{pos}\nControls:")
+    print(f"\nCoins:{coins}\nControls:")
     print("Up: w     Down: s     Left: a     Right: d     Attack: (dir)+a    Quit: q\n")
 
 
-def move(action: str, room: room_type, current_pos: list[int]):
+def move(action: str, room: room_type, current_pos: list[int], coins: int) -> tuple[list[int], int, room_type]:
     new_pos: list[int] = copy.deepcopy(current_pos)
+    new_coins: int = copy.copy(coins)
+    new_room: room_type = copy.deepcopy(room)
     if len(action) > 1:
         if action[1] == controls["attack"]:
             pass
         else:
-            return new_pos
+            return new_pos, new_coins, new_room
     else:
         if action[0] == controls["up"] and (room[(current_pos[1] - 1)][(current_pos[0])] != "-"):
             new_pos = [(current_pos[0]), (current_pos[1] - 1)]
+            if room[new_pos[1]][new_pos[0]] == coin:
+                new_coins += 1
+                new_room[new_pos[1]][new_pos[0]] = " "
         elif action[0] == controls["down"] and (room[(current_pos[1] + 1)][(current_pos[0])] != "-"):
             new_pos = [(current_pos[0]), (current_pos[1] + 1)]
+            if room[new_pos[1]][new_pos[0]] == coin:
+                new_coins += 1
+                new_room[new_pos[1]][new_pos[0]] = " "
         elif action[0] == controls["left"] and (room[(current_pos[1])][(current_pos[0] - 1)] != "|"):
             new_pos = [(current_pos[0] - 1), (current_pos[1])]
+            if room[new_pos[1]][new_pos[0]] == coin:
+                new_coins += 1
+                new_room[new_pos[1]][new_pos[0]] = " "
         elif action[0] == controls["right"] and (room[(current_pos[1])][(current_pos[0] + 1)] != "|"):
             new_pos = [(current_pos[0] + 1), (current_pos[1])]
+            if room[new_pos[1]][new_pos[0]] == coin:
+                new_coins += 1
+                new_room[new_pos[1]][new_pos[0]] = " "
         elif action[0] == controls["quit"]:
             os.system("clear")
             exit()
-    return new_pos
+    return new_pos, new_coins, new_room
 
 
-def game_loop(room: room_type, pos: list[int], player_icon: str):
+def game_loop(room: room_type, pos: list[int], player_icon: str, coins: int):
     level = draw_player(pos, player_icon, room)
-    print_game(level, pos)
+    print_game(level, pos, coins)
     action: str = input()
-    new_pos = move(action, room, pos)
-    game_loop(room, new_pos, player_icon)
+    new_pos, new_coins, new_room = move(action, room, pos, coins)
+    game_loop(new_room, new_pos, player_icon, new_coins)
 
 
 def start_game():
     global current_room
     current_room = room_generator(randint(3, 15))
-    game_loop(current_room, player_pos, player)
+    game_loop(current_room, player_pos, player, 0)
 
 
 start_game()
