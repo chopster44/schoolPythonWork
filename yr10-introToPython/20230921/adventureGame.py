@@ -48,6 +48,17 @@ def room_generator(size: int) -> room_type:
     coins: int = randint(1, 5)
     for i in range(0, coins):
         generated_room[randint(1, (size - 2))][randint(1, (size - 2))] = copy.copy(coin)
+
+    i = randint(1,4)
+    if i == 0:
+        generated_room[0][(randint(1, (size-1)))] = copy.copy(door)
+    elif i == 1:
+        generated_room[(randint(1, (size-1)))][0] = copy.copy(door)
+    elif i ==2:
+        generated_room[(randint(1, (size-1)))][(size-1)] = copy.copy(door)
+    elif i ==3:
+        generated_room[(size-1)][(randint(1, (size-1)))] = copy.copy(door)
+
     return generated_room
 
 
