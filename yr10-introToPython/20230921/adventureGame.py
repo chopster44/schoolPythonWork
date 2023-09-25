@@ -92,6 +92,8 @@ def move(action: str, room: room_type, current_pos: list[int], coins: int) -> tu
             pass
         else:
             return new_pos, new_coins, new_room
+    elif len(action) < 1:
+        return new_pos, new_coins, new_room
     else:
         if action[0] == controls["up"] and (not room[(current_pos[1] - 1)][(current_pos[0])] in wall):
             new_pos = [(current_pos[0]), (current_pos[1] - 1)]
