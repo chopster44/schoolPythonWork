@@ -49,7 +49,7 @@ def room_generator(size: int) -> room_type:
     for i in range(0, coins):
         generated_room[randint(1, (size - 2))][randint(1, (size - 2))] = copy.copy(coin)
 
-    i = randint(1,4)
+    i = randint(0,3)
     if i == 0:
         generated_room[0][(randint(1, (size-1)))] = copy.copy(door)
     elif i == 1:
@@ -98,21 +98,33 @@ def move(action: str, room: room_type, current_pos: list[int], coins: int) -> tu
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
+            elif room[new_pos[1]][new_pos[0]] == door:
+                new_room = room_generator(randint(3, 15))
+                new_pos = [1,1]
         elif action[0] == controls["down"] and (not room[(current_pos[1] + 1)][(current_pos[0])] in wall):
             new_pos = [(current_pos[0]), (current_pos[1] + 1)]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
+            elif room[new_pos[1]][new_pos[0]] == door:
+                new_room = room_generator(randint(3, 15))
+                new_pos = [1,1]
         elif action[0] == controls["left"] and (not room[(current_pos[1])][(current_pos[0] - 1)] in wall):
             new_pos = [(current_pos[0] - 1), (current_pos[1])]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
+            elif room[new_pos[1]][new_pos[0]] == door:
+                new_room = room_generator(randint(3, 15))
+                new_pos = [1,1]
         elif action[0] == controls["right"] and (not room[(current_pos[1])][(current_pos[0] + 1)] in wall):
             new_pos = [(current_pos[0] + 1), (current_pos[1])]
             if room[new_pos[1]][new_pos[0]] == coin:
                 new_coins += 1
                 new_room[new_pos[1]][new_pos[0]] = " "
+            elif room[new_pos[1]][new_pos[0]] == door:
+                new_room = room_generator(randint(3, 15))
+                new_pos = [1,1]
         elif action[0] == controls["quit"]:
             os.system("clear")
             exit()
