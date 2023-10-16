@@ -10,3 +10,8 @@ class Show:
 shows: list[Show] = []
 performers: list[Performer] = []
 
+def addShow():
+    pass
+
+def addPerformer():
+    pass
