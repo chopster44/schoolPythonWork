@@ -3,7 +3,7 @@ from random import randint
 secret_number: int = randint(1, 10)
 
 # Allow the user to guess the number
-for attempts in range(3):
+for attempts in range(10):
     guess: int = int(input("Guess the number (1-10): "))
 
     if guess == secret_number:
