@@ -1,4 +1,4 @@
-import math
+import statistics
 from random import randint
 rolls: list[int] = []
 while True:
@@ -8,5 +8,5 @@ while True:
     rolls.append(tempRand)
     print(tempRand)
   else:
-    print(f"Average roll {math.floor(sum(rolls)/len(rolls))}")
+    print(f"Average roll {statistics.mode(rolls)}")
     break
