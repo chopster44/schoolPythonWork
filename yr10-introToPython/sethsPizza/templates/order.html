@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<title> Order: </title>
+<form>
+    <label for="base">Base:</label>
+
+    <select id="base" name="base">
+        {% for i in bases %}
+            <option value="{{ i }}"> {{ i }}</option>
+        {% endfor %}
+    </select>
+    <label for="toppings">Toppings</label>
+</form>
