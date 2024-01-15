@@ -8,5 +8,16 @@
             <option value="{{ i }}"> {{ i }}</option>
         {% endfor %}
     </select>
-    <label for="toppings">Toppings</label>
+    <label for="toppings">Toppings:</label>
+    <select id="toppings" name="toppings">
+        {% for i in toppings %}
+            <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+    <label for="sides">Sides:</label>
+    <select id="sides" name="sides">
+        {% for i in sides %}
+            <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
 </form>
