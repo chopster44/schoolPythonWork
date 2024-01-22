@@ -1,0 +1,4 @@
+Ed Sheeran,James Morrison,Katy Perry,Ollie Murs,Jack Johnson,Norah Jones,Lily Allen,Taylor Swift,George Ezra,Pharrell Williams,
+/,/,/,/,/,/,/,/,/,/,
+/,X,X,X,X,X,X,X,X,/,
+T,#T,X,X,M,T,/,/,/,,
