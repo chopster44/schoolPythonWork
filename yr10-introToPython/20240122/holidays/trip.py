@@ -13,3 +13,6 @@ class Trip:
         self.no_passengers = passengers
     def generate_from_file(self, file_line):
         details = file_line.split("/")
+        self.family_name = details[0].split(": ")[1]
+        self.destination = details[1].split(": ")[1]
+        self.no_passengers = details[2].split(": ")[1]
