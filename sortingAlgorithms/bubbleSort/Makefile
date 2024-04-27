@@ -1,19 +1,19 @@
-CC=CC = clang
+CC = clang
 BIN = bin
-SRC = $(wildcard src/*.c)
+SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
 all: clean build
 
 build: $(OBJ)
-	$(CC) -o $(BIN)/dice $^ 
+	$(CC) -o $(BIN)/sort $^
 
 run: all 
-	$(BIN)/dice 
+	$(BIN)/sort
 
 clean:
-	rm $(BIN)/dice
-	rm src/*.o
+	rm $(BIN)/sort
+	rm *.o
 
 init:
 	mkdir -p $(BIN)
