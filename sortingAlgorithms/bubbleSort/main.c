@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #define LEN(x)  (sizeof(x) / sizeof((x)[0]))
 
 void printArray(int *array, int arraySize) {
@@ -36,12 +35,10 @@ void bubble(int *array, int len) {
 }
 
 int main() {
-    printf("Unsorted:");
     int array[7] = {3, 9, 2, 10, 8, 5, 1};
-    int i;
+    printf("Unsorted:");
     printArray(array, LEN(array));
-    int sorted = 0;
-    i = 0;
+
     bubble(array, LEN(array));
 
     printf("Sorted:");
